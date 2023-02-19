@@ -1,4 +1,4 @@
-Another Qt installer(aqt)
+Another Qt installer(aqt) (worked with any mirror - default of https://mirror.yandex.ru/mirrors/qt.io/)
 =========================
 
 - Release: |pypi|
