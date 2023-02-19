@@ -1029,7 +1029,7 @@ class Cli:
         if args is not None and args.config is not None:
             Settings.load_settings(args.config)
         else:
-            config = os.getenv("AQT_CONFIG", None)
+            config = os.getenv("AQT_CONFIG", "./settings.ini")
             if config is not None and os.path.exists(config):
                 Settings.load_settings(config)
                 self.logger.debug("Load configuration from {}".format(config))
@@ -1187,7 +1187,8 @@ def installer(
     logger.addHandler(qh)
     #
     timeout = (Settings.connection_timeout, Settings.response_timeout)
-    hash = get_hash(qt_package.archive_path, algorithm="sha256", timeout=timeout)
+    check_hash = not Settings.ignore_updates_hash
+    hash = get_hash(qt_package.archive_path, algorithm="sha256", timeout=timeout) if check_hash else None
 
     def download_bin(_base_url):
         url = posixpath.join(_base_url, qt_package.archive_path)

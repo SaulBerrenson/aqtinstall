@@ -429,7 +429,7 @@ class SettingsClass:
 
     @property
     def baseurl(self):
-        return self.config.get("aqt", "baseurl", fallback="https://download.qt.io")
+        return self.config.get("aqt", "baseurl", fallback="https://mirror.yandex.ru/mirrors/qt.io")
 
     @property
     def connection_timeout(self):
@@ -455,6 +455,9 @@ class SettingsClass:
     @property
     def max_retries_to_retrieve_hash(self):
         return self.config.getint("requests", "max_retries_to_retrieve_hash", fallback=int(self.max_retries))
+    @property
+    def ignore_updates_hash(self):
+        return self.config.getboolean("requests", "ignore_updates_hash", fallback=True)
 
     @property
     def backoff_factor(self):
